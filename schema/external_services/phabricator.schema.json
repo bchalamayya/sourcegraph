@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "external_services/phabricator.schema.json#",
+  "title": "Phabricator external service connection configuration",
+  "description": "Configuration of a connection to a Phabricator instance",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "url": {
+      "description": "URL of a Phabricator instance, such as https://phabricator.example.com",
+      "type": "string",
+      "examples": ["https://phabricator.example.com"]
+    },
+    "token": {
+      "description": "API token for the Phabricator instance.",
+      "type": "string"
+    },
+    "repos": {
+      "description": "The list of repositories available on Phabricator.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "callsign"],
+        "properties": {
+          "path": {
+            "description": "Display path for the url e.g. gitolite/my/repo",
+            "type": "string"
+          },
+          "callsign": {
+            "description": "The unique Phabricator identifier for the repository, like 'MUX'.",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
